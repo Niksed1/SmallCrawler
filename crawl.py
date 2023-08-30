@@ -38,7 +38,7 @@ class Crawler:
             #print(links)
             for link in links:
                 try:
-                    text_list = [] # holds -> [url, soup]
+                    text_list = [] # holds -> [(url, soup)]
                     url = urljoin(base, link['href'])
 
                     if not self.is_valid_url(url): #checks url validity
@@ -48,7 +48,7 @@ class Crawler:
                     print(f' FETCHED {url} QUEUE SIZE {len(self._links_queue)}')
                     response = urlopen(url)
                     new_soup = BeautifulSoup(response, features="lxml")
-                    text_list.append([url, new_soup])
+                    text_list.append((url, new_soup))
 
                     for elem in text_list:
                         soup = elem[1]
